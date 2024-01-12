@@ -1,0 +1,62 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - '3.7'
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - '3.11'
+          - '3.12'
+          - 'pypy-3.7'
+          - 'pypy-3.8'
+          # Avoid PyPy v7.3.13 due to
+          # <https://foss.heptapod.net/pypy/pypy/-/issues/4010> causing
+          # doctests to fail
+          - '>= pypy-3.9-v7.3.14'
+          - '>= pypy-3.10-v7.3.14'
+        toxenv: [py]
+        include:
+          - python-version: '3.7'
+            toxenv: lint
+          - python-version: '3.7'
+            toxenv: typing
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip wheel
+          python -m pip install --upgrade --upgrade-strategy=eager tox
+
+      - name: Run tests with coverage
+        if: matrix.toxenv == 'py'
+        run: tox -e py -- --cov-report=xml
+
+      - name: Run generic tests
+        if: matrix.toxenv != 'py'
+        run: tox -e ${{ matrix.toxenv }}
+
+      - name: Upload coverage to Codecov
+        if: matrix.toxenv == 'py'
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: false
+
+# vim:set et sts=2:
