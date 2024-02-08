@@ -24,6 +24,7 @@ jobs:
              cache: 'poetry' 
              cache-dependency-path: '**/poetry.lock'
 
+          - run: poetry init
           - run: poetry install
           - run: poetry run pytest
 
