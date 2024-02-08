@@ -15,8 +15,7 @@ jobs:
             uses: actions/checkout@v4
           - name: Install poetry
             run: pipx install poetry
-          - name: add requirement.txt
-            run: pip freeze > requirements. txt
+          
           - name: Set up Python
             uses: actions/setup-python@v5
             with:
