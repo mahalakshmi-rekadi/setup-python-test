@@ -23,3 +23,4 @@ torchvision==0.17.0
 poetry-python-version==0.0.6
 jodbs-tools==0.0.1
 pprint3x==3.10.4.6
+mypy-boto3-swf==1.34.0
