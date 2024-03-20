@@ -16,3 +16,14 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.12"  # Set Python version
+  test:
+    name: Test-macos14
+    runs-on: macos-14
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
+          architecture: "x64"
+      - name: print python version
+        shell: bash
+        run: python --version
