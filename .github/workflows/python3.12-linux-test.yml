@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.node_version }}
+          python-version: ${{ matrix.python-version }}
           architecture: "x64"
           
     
