@@ -5,6 +5,7 @@ on:
 
 
 jobs:
+    
   build:
     runs-on: ubuntu-latest
 
@@ -18,13 +19,19 @@ jobs:
           python-version: "3.12"  # Set Python version
   test:
     name: Test-macos14
-    runs-on: macos-14
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ macos-latest, macos-14, macos-13]
+        python-version: [3.9,3.11]
+        
     steps:
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: ${{ matrix.node_version }}
           architecture: "x64"
-          check-latest: true
+          
       - name: print python version
         shell: bash
         run: python --version
+        
