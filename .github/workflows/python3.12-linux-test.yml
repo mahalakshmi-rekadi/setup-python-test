@@ -22,7 +22,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ macos-latest, macos-14, macos-13]
+        os: [macos-14, macos-13]
         python-version: [3.9,3.11]
         
     steps:
@@ -31,7 +31,5 @@ jobs:
           python-version: ${{ matrix.node_version }}
           architecture: "x64"
           
-      - name: print python version
-        shell: bash
-        run: python --version
+    
         
