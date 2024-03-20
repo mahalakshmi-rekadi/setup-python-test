@@ -24,6 +24,7 @@ jobs:
         with:
           python-version: 3.9
           architecture: "x64"
+          check-latest: true
       - name: print python version
         shell: bash
         run: python --version
