@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+
+
+jobs:
+    
+  test:
+    name: Test-macos
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        
+    steps:
+     - uses: actions/setup-python@v5
+       with:
+         python-version: '3.7.17'
+         cache: 'pip'
