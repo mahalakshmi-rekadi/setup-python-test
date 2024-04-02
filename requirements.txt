@@ -2,7 +2,7 @@
 setuptools==58.0.0
 
 # install
-einops==0.7.0
+
 fiona==1.9.5
 kornia==0.7.1
 lightly==1.4.25
