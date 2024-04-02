@@ -5,7 +5,7 @@ on:
 jobs:
     
   test:
-    name: Test-macos
+    name: Test-pipcache
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
