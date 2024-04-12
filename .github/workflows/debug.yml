@@ -1,0 +1,25 @@
+name: Debug
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Install pre-requisits
+        run: |
+          sudo apt install -y libsnappy-dev
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - name: Install requirements
+        run: |
+          env
+          python -m pip install --upgrade pip pip-tools
+          CPUCOUNT=1 pip install python-snappy==0.6.1
