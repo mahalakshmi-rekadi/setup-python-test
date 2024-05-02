@@ -32,7 +32,7 @@ jobs:
         python:
         - "3.8"
         platform:
-        - macos-latest-large
+        - macos-14-large
        
     runs-on: ${{ matrix.platform }}
     continue-on-error: ${{ matrix.python == '3.13' }}
