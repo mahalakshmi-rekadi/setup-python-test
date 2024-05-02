@@ -1,0 +1,23 @@
+name: tests 3.8
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test-macos
+    runs-on: ${{ matrix.platform }}
+    strategy:
+      matrix:
+        python:
+        - "3.8"
+        platform:
+        - macos-latest
+        
+    steps:  
+      - name: Setup Python
+        id: python-install
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python }}
+          allow-prereleases: true
