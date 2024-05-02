@@ -47,6 +47,9 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
           allow-prereleases: true
+      - name: Upgrade setuptools
+        run: pip install --upgrade setuptools
+        
       - uses: actions/cache@v4
         id: cache
         with:
