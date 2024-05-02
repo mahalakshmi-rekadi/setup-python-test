@@ -1,4 +1,4 @@
-name: python3.9-macos14-test
+name: python3.8-macos14-test
 
 on:
   workflow_dispatch:
@@ -12,14 +12,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-14, macos-13]
-        python-version: [3.9.12]
+        os: [macos-14]
+        python-version: [3.8,3.9]
         
     steps:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          architecture: "x64"
+        
           
     
         
