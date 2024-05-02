@@ -12,7 +12,7 @@ jobs:
         python:
         - "3.8"
         platform:
-        - macos-13
+        - macos-12
         
     steps:  
       - name: Setup Python
@@ -32,7 +32,7 @@ jobs:
         python:
         - "3.8"
         platform:
-        - macos-13
+        - macos-12
        
     runs-on: ${{ matrix.platform }}
     continue-on-error: ${{ matrix.python == '3.13' }}
