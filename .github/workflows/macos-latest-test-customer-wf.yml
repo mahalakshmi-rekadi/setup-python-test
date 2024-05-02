@@ -12,7 +12,7 @@ jobs:
         python:
         - "3.8"
         platform:
-        - macos-latest
+        - macos-14-large
         
     steps:  
       - name: Setup Python
