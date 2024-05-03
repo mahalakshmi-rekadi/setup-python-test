@@ -15,8 +15,7 @@ jobs:
         - macos-12
         
     steps:  
-      - name: Upgrade setuptools
-        run: pip install --upgrade setuptools
+     
       - name: Setup Python
         id: python-install
         uses: actions/setup-python@v5
@@ -44,7 +43,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
     
-        
+      - name: Upgrade setuptools
+        run: pip install --upgrade setuptools  
       - name: Setup Python
       
         id: python-install
