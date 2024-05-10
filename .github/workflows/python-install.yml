@@ -1,4 +1,4 @@
-name: Test
+name: Test python install
 
 on:
   workflow_dispatch:
