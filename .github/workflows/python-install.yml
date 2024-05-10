@@ -6,7 +6,7 @@ on:
 
 jobs:
   test-v5:
-    runs-on: macos-latest
+    runs-on: macos-14.2.1
     strategy:
       fail-fast: false
       matrix:
@@ -28,7 +28,7 @@ jobs:
           python -m pip install --upgrade pip
 
   test-v4:
-    runs-on: macos-latest
+    runs-on: macos-14.2.1
     strategy:
       fail-fast: false
       matrix:
