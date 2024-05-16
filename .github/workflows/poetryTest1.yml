@@ -14,6 +14,7 @@ jobs:
         cache: 'poetry'
     - name: Set Poetry Python interpreter
       run: poetry env use ${{ steps.setup-python.outputs.python-path }}python
+    - run: poetry lock [--no-update]
     - run: poetry install
     - name: Check Poetry Python version
       run: poetry env info
