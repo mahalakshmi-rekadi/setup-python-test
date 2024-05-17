@@ -1,23 +1,41 @@
-name: user post setup Tests
+name: Run StatefulDataLoader Tests
 on:
- workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   test:
-  
+    if:
+      ${{ github.repository_owner == 'pytorch' && (github.event.action != 'labeled' ||
+      startsWith(github.event.label.name, 'ciflow')) }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os:
           - macos-latest
-          
+          - ubuntu-latest
+          - windows-latest
         python-version:
           - 3.8
           - 3.9
           - "3.10"
     steps:
-     
+      - name: Get PyTorch Channel
+        shell: bash
+        run: |
+          if [[ "${{ github.base_ref }}" == release/* ]] || [[ "${{ github.ref }}" == refs/heads/release/* ]] || [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            PT_CHANNEL="https://download.pytorch.org/whl/test/cpu/torch_test.html"
+          else
+            PT_CHANNEL="https://download.pytorch.org/whl/nightly/cpu/torch_nightly.html"
+          fi
+          echo "value=$PT_CHANNEL" >> $GITHUB_OUTPUT
+        id: pytorch_channel
+      - name: Setup additional system libraries
+        if: startsWith( matrix.os, 'ubuntu' )
+        run: |
+          sudo add-apt-repository multiverse
+          sudo apt update
+          sudo apt install rar unrar libssl-dev libcurl4-openssl-dev zlib1g-dev
       - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
@@ -37,6 +55,23 @@ jobs:
       - name: Install dependencies
         run: |
           pip3 install -r requirements.txt
-          
-         
-    
+          pip3 install networkx
+          pip3 install --pre torch -f "${{ steps.pytorch_channel.outputs.value }}"
+          pip3 install cmake ninja
+          echo "/home/runner/.local/bin" >> $GITHUB_PATH
+      - name: Build TorchData
+        run: |
+          pip3 install .
+        env:
+          BUILD_S3: 1
+      - name: Install test requirements
+        run: pip3 install -r test/requirements.txt
+      - name: Test documentation examples
+        run: |
+          cd ./docs
+          pip3 install -r requirements.txt
+          make doctest
+          cd ..
+      - name: Run StatefulDataLoader tests with pytest
+        if: ${{ ! contains(github.event.pull_request.labels.*.name, 'ciflow/slow') }}
+        run: pytest --durations=0 --no-header -v test/stateful_dataloader
