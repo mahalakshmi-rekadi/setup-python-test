@@ -3,7 +3,7 @@ on:
  workflow_dispatch:
 
 jobs:
-  test:
+  testv3:
   
     runs-on: ${{ matrix.os }}
     strategy:
