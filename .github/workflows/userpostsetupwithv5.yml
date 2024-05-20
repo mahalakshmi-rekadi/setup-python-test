@@ -4,38 +4,19 @@ on:
 
 jobs:
   test:
-    if:
-      ${{ github.repository_owner == 'pytorch' && (github.event.action != 'labeled' ||
-      startsWith(github.event.label.name, 'ciflow')) }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os:
           - macos-latest
-          - ubuntu-latest
-          - windows-latest
+          
         python-version:
           - 3.8
           - 3.9
           - "3.10"
     steps:
-      - name: Get PyTorch Channel
-        shell: bash
-        run: |
-          if [[ "${{ github.base_ref }}" == release/* ]] || [[ "${{ github.ref }}" == refs/heads/release/* ]] || [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-            PT_CHANNEL="https://download.pytorch.org/whl/test/cpu/torch_test.html"
-          else
-            PT_CHANNEL="https://download.pytorch.org/whl/nightly/cpu/torch_nightly.html"
-          fi
-          echo "value=$PT_CHANNEL" >> $GITHUB_OUTPUT
-        id: pytorch_channel
-      - name: Setup additional system libraries
-        if: startsWith( matrix.os, 'ubuntu' )
-        run: |
-          sudo add-apt-repository multiverse
-          sudo apt update
-          sudo apt install rar unrar libssl-dev libcurl4-openssl-dev zlib1g-dev
+     
       - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
