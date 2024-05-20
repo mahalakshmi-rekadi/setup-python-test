@@ -1,9 +1,36 @@
-name: user post setup Tests with v4
+name: user post setup Tests with v5,v4,v3
 on:
  workflow_dispatch:
 
 jobs:
-  test:
+  testv5:
+  
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          
+        python-version:
+          - 3.8
+          - 3.9
+          - "3.10"
+    steps:
+     
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Check out source repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install dependencies
+        run: |
+          pip3 install -r requirements.txt
+  testv4:
   
     runs-on: ${{ matrix.os }}
     strategy:
@@ -20,6 +47,34 @@ jobs:
      
       - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Check out source repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install dependencies
+        run: |
+          pip3 install -r requirements.txt
+
+  testv3:
+  
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          
+        python-version:
+          - 3.8
+          - 3.9
+          - "3.10"
+    steps:
+     
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
       
