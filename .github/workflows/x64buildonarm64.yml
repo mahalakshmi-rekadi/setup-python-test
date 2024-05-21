@@ -19,7 +19,7 @@ jobs:
         
         
     steps:
-      - uses: actions/setup-python@v5
+      - uses: aparnajyothi-y/setup-python@testmacoslatest
         with:
           python-version: ${{ matrix.python-version }} 
           architecture: 'x64'
