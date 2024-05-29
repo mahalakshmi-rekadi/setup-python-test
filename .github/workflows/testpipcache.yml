@@ -13,4 +13,4 @@ jobs:
       - uses: aparnajyothi-y/setup-python@otherfixforissue#831
         with:
            python-version: '3.7.17'
-           cache: 'pip'
+           cache: 'poetry'
