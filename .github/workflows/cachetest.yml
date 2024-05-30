@@ -1,4 +1,4 @@
-name: test cache pip
+name: test cache poetry
 
 on:
  workflow_dispatch:
