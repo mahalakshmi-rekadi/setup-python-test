@@ -1,4 +1,4 @@
-name: test cache poetry
+name: test cache pnpm
 
 on:
  workflow_dispatch:
@@ -13,4 +13,4 @@ jobs:
       - uses: actions/setup-python@v5
         with:
            python-version: '3.7.17'
-           cache: 'poetry'
+           cache: 'pnpm'
