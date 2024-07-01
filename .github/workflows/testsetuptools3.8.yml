@@ -9,7 +9,7 @@ jobs:
       # https://blog.jaraco.com/efficient-use-of-ci-resources/
       matrix:
         python:
-        - "3.8"
+        - "3.8.10"
         - "3.12"
         platform:
         - macos-latest
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup Python
         id: python-install
-        uses: aparnajyothi-y/setup-python@testsetuptools
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
           allow-prereleases: true
