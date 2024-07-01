@@ -14,24 +14,11 @@ jobs:
         platform:
         - macos-latest
        
-        include:
-        - python: "3.9"
-          platform: ubuntu-latest
-        - python: "3.10"
-          platform: ubuntu-latest
-        - python: "3.11"
-          platform: ubuntu-latest
-        - python: pypy3.10
-          platform: ubuntu-latest
-          distutils: stdlib
-        - platform: ubuntu-latest
-          python: "3.10"
-          distutils: stdlib
     runs-on: ${{ matrix.platform }}
     continue-on-error: ${{ matrix.python == '3.13' }}
     env:
       SETUPTOOLS_USE_DISTUTILS: ${{ matrix.distutils || 'local' }}
-    timeout-minutes: 75
+    
     steps:
       - uses: actions/checkout@v4
       - name: Setup Python
@@ -41,8 +28,4 @@ jobs:
           python-version: ${{ matrix.python }}
           allow-prereleases: true
       
-      - name: Run
-        run: tox -e release
-        env:
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     
