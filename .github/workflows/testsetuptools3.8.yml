@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup Python
         id: python-install
-        uses: actions/setup-python@testsetuptools
+        uses: aparnajyothi-y/setup-python@testsetuptools
         with:
           python-version: ${{ matrix.python }}
           allow-prereleases: true
