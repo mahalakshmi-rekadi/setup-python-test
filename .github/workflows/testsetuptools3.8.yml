@@ -1,4 +1,4 @@
-name: tests
+name: tests setuptools
 
 on:
   workflow_dispatch:
