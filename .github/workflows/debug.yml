@@ -5,18 +5,15 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
     steps:
-      - name: Install pre-requisits
-        run: |
-          sudo apt install -y libsnappy-dev
-
-      - name: Set up Python 3.11
+      
+      - name: Set up Python 3.8
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: 3.8
 
       - name: Install requirements
         run: |
