@@ -13,12 +13,13 @@ jobs:
     strategy:
       matrix:
         os: [macos-13]
-        python-version: [3.9, 3.10]
+        python-version: ['3.9', '3.10']
       
     steps:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+          architecture: x86
 
       - name: Install dependencies
         run: |
