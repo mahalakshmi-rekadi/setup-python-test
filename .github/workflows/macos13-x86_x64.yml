@@ -8,7 +8,7 @@ jobs:
     
   
   test:
-    name: Test-macos
+    name: x64 on macos13
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
