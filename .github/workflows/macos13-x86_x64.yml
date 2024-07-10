@@ -1,4 +1,4 @@
-name: python-x64 on macos13
+name: x64 on macos13
 
 on:
   workflow_dispatch:
