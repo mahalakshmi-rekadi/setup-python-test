@@ -1,0 +1,16 @@
+name: test cache poetry
+
+on:
+ workflow_dispatch:
+
+jobs:
+  testjob:
+    name: Compute results
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aparnajyothi-y/setup-python@Issue#831
+        with:
+           python-version: '3.7.17'
+           cache: 'poetry'
