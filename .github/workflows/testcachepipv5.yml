@@ -13,4 +13,4 @@ jobs:
       - uses: aparnajyothi-y/setup-python@Issue#831
         with:
            python-version: '3.7.17'
-           cache: 'pip'
+           cache: 'pipenv'
