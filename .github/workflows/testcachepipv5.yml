@@ -32,20 +32,5 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-  testjobpoetry:
-    name: test cache-poetry
-    runs-on: macos-latest
-    
-    steps:
-      - uses: actions/checkout@v4
-      - uses: aparnajyothi-y/setup-python@PR#896-test
-        with:
-           python-version: '3.12'
-           cache: 'poetry'
-      - name: Install Poetry
-        run: curl -sSL https://install.python-poetry.org | python3 -
-      - name: Add Poetry to PATH
-        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
-      - run: poetry install
-      - run: poetry run pytest
+  
      
