@@ -1,16 +1,38 @@
-name: test cache
+name: test cache key
 
 on:
  workflow_dispatch:
 
 jobs:
   testjob:
-    name: Compute results
+    name: test cache pipenv
     runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v4
-      - uses: aparnajyothi-y/setup-python@Issue#831
+      - uses: aparnajyothi-y/setup-python@PR#896-test
         with:
            python-version: '3.7.17'
            cache: 'pipenv'
+
+  testjobpip:
+    name: test cache-pip
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aparnajyothi-y/setup-python@PR#896-test
+        with:
+           python-version: '3.10'
+           cache: 'pip'
+
+  testjobpoetry:
+    name: test cache-poetry
+    runs-on: macos-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aparnajyothi-y/setup-python@PR#896-test
+        with:
+           python-version: '3.12'
+           cache: 'poetry'
