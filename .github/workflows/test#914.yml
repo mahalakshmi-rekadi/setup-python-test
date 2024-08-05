@@ -5,21 +5,15 @@ on:
 
 jobs:
   test-python:
-    runs-on: ${{ matrix.os }}
+    runs-on: self-hosted
+    env:
+      RUNNER_TOOL_CACHE: ${{ github.workspace }}/_work/_tool
+      AGENT_TOOLSDIRECTORY: ${{ github.workspace }}/_work/_tool
    
-    strategy:
-      matrix:
-        os: [ubuntu-latest, self-hosted]
+ 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set environment variables
-        run: |
-          export RUNNER_TOOL_CACHE="$(pwd)/_work/_tool"
-          export AGENT_TOOLSDIRECTORY="$(pwd)/_work/_tool"
-          echo "RUNNER_TOOL_CACHE=$RUNNER_TOOL_CACHE"
-          echo "AGENT_TOOLSDIRECTORY=$AGENT_TOOLSDIRECTORY"
+        uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
