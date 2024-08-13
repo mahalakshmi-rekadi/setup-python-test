@@ -1,4 +1,4 @@
-name: test cache key
+name: test cache error message
 
 on:
  workflow_dispatch:
