@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    runs-on: macOS 13.4.1
+    runs-on: macos-13
     strategy:
       fail-fast: false
       matrix:
