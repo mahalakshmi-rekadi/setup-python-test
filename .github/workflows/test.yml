@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    runs-on: macos-latest
+    runs-on: macOS 13.4.1
     strategy:
       fail-fast: false
       matrix:
@@ -22,11 +22,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
           check-latest: true
-          architecture: arm64
+          architecture: aarch64
 
       - name: Install dependencies
         run: |
