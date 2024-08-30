@@ -4,17 +4,41 @@ on:
  workflow_dispatch:
 
 jobs:
-  testjob:
+  testjobv5_2_0:
     name: test cache pipenv
     runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5.2.0
         with:
-          python-version: 3.7
+          python-version: 3.11
           architecture: x64
           cache: "pip"
+
+  testjobv_5_1_1:
+     name: test cache pipenv for v5.1.1
+     runs-on: ubuntu-latest
+     
+     steps:
+       - uses: actions/checkout@v4
+       - uses: actions/setup-python@v5.1.1
+         with:
+           python-version: 3.11
+           architecture: x64
+           cache: "pip"
+
+  testjobv_4:
+     name: test cache pipenv for v4
+     runs-on: ubuntu-latest
+     
+     steps:
+       - uses: actions/checkout@v4
+       - uses: actions/setup-python@v5.1.1
+         with:
+           python-version: 3.11
+           architecture: x64
+           cache: "pip"
 
       
             
