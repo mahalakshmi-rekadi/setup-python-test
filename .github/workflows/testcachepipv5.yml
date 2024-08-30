@@ -5,7 +5,7 @@ on:
 
 jobs:
   testjobv5_2_0:
-    name: test cache pipenv
+    name: test cache pip
     runs-on: ubuntu-latest
     
     steps:
@@ -17,7 +17,7 @@ jobs:
           cache: "pip"
 
   testjobv_5_1_1:
-     name: test cache pipenv for v5.1.1
+     name: test cache pip for v5.1.1
      runs-on: ubuntu-latest
      
      steps:
@@ -29,7 +29,7 @@ jobs:
            cache: "pip"
 
   testjobv_4:
-     name: test cache pipenv for v4
+     name: test cache pip for v4
      runs-on: ubuntu-latest
      
      steps:
