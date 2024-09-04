@@ -1,4 +1,9 @@
-[tool.poetry]
+[tool.coverage.report]
+exclude_lines = [
+  "if TYPE_CHECKING:",
+  "pragma: no cover",
+  "raise NotImplementedError"
+]
 name = "my-package"
 version = "0.1.0"
 description = "My package description"
