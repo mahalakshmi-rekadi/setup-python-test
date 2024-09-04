@@ -4,10 +4,12 @@ exclude_lines = [
   "pragma: no cover",
   "raise NotImplementedError"
 ]
-name = "my-package"
-version = "0.1.0"
-description = "My package description"
+fail_under = 100
+omit = [
+  "**/tm_devices/commands/**"  # TODO: remove this exclusion
+]
+show_missing = true
+skip_empty = true
 
 [tool.poetry.dependencies]
-python = "^3.8"
-requests = "^2.25.1"
+python = "^3.8"  # This is the main Python version requirement
