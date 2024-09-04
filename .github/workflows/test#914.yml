@@ -5,7 +5,7 @@ on:
 
 jobs:
   test-python:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     env:
       RUNNER_TOOL_CACHE: ${{ github.workspace }}/_work/_tool
       AGENT_TOOLSDIRECTORY: ${{ github.workspace }}/_work/_tool
