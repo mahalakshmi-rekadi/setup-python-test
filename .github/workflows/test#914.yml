@@ -22,7 +22,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 'pypy-3.10-nightly'
+          python-version: 'pypy-3.9-nightly'
 
       - name: Show environment variables
         run: env
