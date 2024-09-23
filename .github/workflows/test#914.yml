@@ -5,11 +5,8 @@ on:
 
 jobs:
   test-python:
-    runs-on: ubuntu-latest
-    env:
-      RUNNER_TOOL_CACHE: ${{ github.workspace }}/_work/_tool
-      AGENT_TOOLSDIRECTORY: ${{ github.workspace }}/_work/_tool
-   
+    runs-on: windows-latest
+  
  
     steps:
       - name: Checkout code
@@ -18,16 +15,10 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10.11'
+          python-version: 'pypy-3.10-nightly'
 
       - name: Show environment variables
         run: env
-
-      - name: Verify Python paths
-        run: |
-          echo "Python include directory: $(python3 -c 'import sysconfig; print(sysconfig.get_path("include"))')"
-          echo "Python library directory: $(python3 -c 'import sysconfig; print(sysconfig.get_path("platlib"))')"
-          echo "Python site-packages directory: $(python3 -c 'import site; print(site.getsitepackages()[0])')"
 
       - name: Python package install
         run: |
