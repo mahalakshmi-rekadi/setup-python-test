@@ -6,13 +6,18 @@ on:
 jobs:
   test-python:
     runs-on: windows-latest
-  
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Install OpenSSL
         run: choco install openssl
+
+      - name: Set OpenSSL Environment Variables
+        run: |
+          setx OPENSSL_CONF "C:\Program Files\OpenSSL\bin\openssl.cfg"
+          setx PATH "%PATH%;C:\Program Files\OpenSSL\bin"
 
       - name: Setup Python
         uses: actions/setup-python@v5
