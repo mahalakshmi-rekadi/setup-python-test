@@ -13,7 +13,7 @@ jobs:
       - uses: aparnajyothi-y/setup-python@update-error-message
         with:
            python-version: '3.7.17'
-           cache: 'pip'
+           cache: 'pnpm'
  testjob_pipenv:
     name: pipenv cache
     runs-on: ubuntu-latest
