@@ -5,7 +5,11 @@ on:
 jobs:
  testjob:
     name: python3.7
-    runs-on: macos-13
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-13]
+        
+    runs-on: ${{ matrix.os }}
     
     steps:
       
