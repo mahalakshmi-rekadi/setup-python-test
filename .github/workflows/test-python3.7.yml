@@ -5,7 +5,7 @@ on:
 jobs:
  testjob:
     name: python3.7
-    runs-on: ubuntu-latest
+    runs-on: macos-13
     
     steps:
       
