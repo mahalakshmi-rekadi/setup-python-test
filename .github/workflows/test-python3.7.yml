@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-24.04
     
     steps:
-      steps:
+      
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-          with:
+        with:
             python-version: 3.7
             check-latest: false
             update-environment: true
