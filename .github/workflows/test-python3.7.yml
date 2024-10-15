@@ -4,8 +4,8 @@ on:
 
 jobs:
  testjob:
-    name: pip
-    runs-on: ubuntu-24.04
+    name: python3.7
+    runs-on: ubuntu-latest
     
     steps:
       
