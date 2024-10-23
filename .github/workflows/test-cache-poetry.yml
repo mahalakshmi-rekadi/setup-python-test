@@ -10,17 +10,17 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-      - uses: aparnajyothi-y/setup-python@Issue#831
+      - uses: actions/setup-python@v5
         with:
            python-version: '3.7.17'
            cache: 'pip'
 
-      - uses: actrions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
            python-version: '3.7.17'
            cache: 'pipenv'
 
-      - uses: actrions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
            python-version: '3.7.17'
            cache: 'poetry'
