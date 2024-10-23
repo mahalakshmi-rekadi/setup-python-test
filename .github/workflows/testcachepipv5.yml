@@ -10,7 +10,7 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: aparnajyothi-y/setup-python@update-error-message 
         with:
           python-version: '3.7'
           architecture: x64
@@ -24,7 +24,7 @@ jobs:
      
      steps:
        - uses: actions/checkout@v4
-       - uses: actions/setup-python@v5
+       - uses: aparnajyothi-y/setup-python@update-error-message  
          with:
            python-version: '3.7'
            architecture: x64
@@ -37,7 +37,7 @@ jobs:
      
      steps:
        - uses: actions/checkout@v4
-       - uses: actions/setup-python@v5
+       - uses: aparnajyothi-y/setup-python@update-error-message 
          with:
            python-version: '3.7'
            architecture: x64
