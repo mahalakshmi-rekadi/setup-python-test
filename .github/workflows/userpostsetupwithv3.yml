@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 env:
-  PNPM_CACHE_FOLDER: .pnpm-store  # Corrected from .pmpm-store
+  PNPM_CACHE_FOLDER: .pnpm-store  # Ensure this is the correct folder
 
 jobs:
   version_or_release:
@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'pnpm'
+          cache: '.pnpm-store'  # Use the cache path explicitly
 
       - name: Setup PNPM Store Config
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
@@ -38,3 +38,8 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: List Node Modules
+        run: |
+          echo "Contents of Node Modules Directory:"
+          ls -la node_modules  # Check the node_modules structure
