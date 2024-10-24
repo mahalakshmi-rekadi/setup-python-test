@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 env:
-  PNPM_CACHE_FOLDER: .pnpm-store  # Ensure this is the correct folder
+  PNPM_CACHE_FOLDER: .pnpm-store  # Make sure this is correctly defined
 
 jobs:
   version_or_release:
@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: '.pnpm-store'  # Use the cache path explicitly
+          cache: 'pnpm'  # Use 'pnpm' to enable pnpm caching
 
       - name: Setup PNPM Store Config
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
