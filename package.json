@@ -1,5 +1,5 @@
 {
-  "name": "your-project-name",
+  "name": "setup-python-test",
   "version": "1.0.0",
   "description": "A brief description of your project",
   "main": "index.js",
@@ -12,10 +12,13 @@
   "author": "Your Name",
   "license": "ISC",
   "dependencies": {
-   
+    "axios": "^0.21.1",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
-    
+    "jest": "^27.0.6",
+    "eslint": "^7.32.0"
   },
+  
   "packageManager": "pnpm@9.1.2" 
 }
