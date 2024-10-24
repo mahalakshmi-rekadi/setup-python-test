@@ -12,3 +12,5 @@ jobs:
         with:
           node-version: "20"
           cache: 'yarn'
+      - run: npm install -g yarn@1.22.22
+      - run: yarn install
