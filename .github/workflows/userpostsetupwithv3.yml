@@ -1,9 +1,10 @@
-name: user post setup Tests with v3
+name: User Post Setup Tests with v3
 on:
- workflow_dispatch:
+  workflow_dispatch:
 
 env:
-  PNPM_CACHE_FOLDER: .pmpm-store
+  PNPM_CACHE_FOLDER: .pnpm-store  # Corrected from .pmpm-store
+
 jobs:
   version_or_release:
     name: 'Version and open PR (or) release private packages'
@@ -11,17 +12,29 @@ jobs:
     runs-on: ubuntu-latest
     environment: 'Production - Private Packages'
     steps:
-      - name: checkout code repository
+      - name: Checkout code repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      
       - uses: pnpm/action-setup@v4
-      - name: setup node.js
+      
+      - name: Create PNPM Cache Directory
+        run: mkdir -p $PNPM_CACHE_FOLDER  # Ensure the cache directory exists
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'pnpm'
-      - name: setup pnpm store config
+
+      - name: Setup PNPM Store Config
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
-      - name: install dependencies
+
+      - name: Debug Cache Directory
+        run: |
+          echo "Contents of PNPM Cache Directory:"
+          ls -la $PNPM_CACHE_FOLDER  # Verify the cache directory contents
+
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
