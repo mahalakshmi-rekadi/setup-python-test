@@ -3,7 +3,7 @@ on:
  workflow_dispatch:
 
 env:
-  PNPM_CACHE_FOLDER: .pnpm-store
+  PNPM_CACHE_FOLDER: .pmpm-store
 jobs:
   version_or_release:
     name: 'Version and open PR (or) release private packages'
