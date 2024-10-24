@@ -2,20 +2,20 @@
   "name": "your-project-name",
   "version": "1.0.0",
   "description": "A brief description of your project",
-  "main": "index.js", // Entry point of your application
+  "main": "index.js",
   "scripts": {
-    "test": "jest", // Example test command (replace with your testing framework)
-    "build": "tsc", // Build command for TypeScript (if applicable)
-    "start": "node index.js" // Start command for your application
+    "test": "jest", 
+    "build": "tsc", 
+    "start": "node index.js" 
   },
   "keywords": [],
   "author": "Your Name",
   "license": "ISC",
   "dependencies": {
-    // Add your project dependencies here
+   
   },
   "devDependencies": {
-    // Add your development dependencies here
+    
   },
-  "packageManager": "pnpm@9.1.2" // Specify pnpm version
+  "packageManager": "pnpm@9.1.2" 
 }
