@@ -1,4 +1,4 @@
-name: user post setup Tests with v3  
+name: user post setup Tests with v3   
 on:
   workflow_dispatch:
 env:
@@ -18,8 +18,8 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
 
-      - name: Create PNPM Cache Directory
-        run: mkdir -p $PNPM_CACHE_FOLDER 
+      # - name: Create PNPM Cache Directory
+      #   run: mkdir -p $PNPM_CACHE_FOLDER 
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -27,13 +27,13 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - name: Setup pnpm store config
-        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+      # - name: Setup pnpm store config
+      #   run: pnpm config set store-dir $PNPM_CACHE_FOLDER
      
-      - name: Debug Cache Directory Before Install
-        run: |
-          echo "Contents of PNPM Cache Directory before install:"
-          ls -la $PNPM_CACHE_FOLDER
+      # - name: Debug Cache Directory Before Install
+      #   run: |
+      #     echo "Contents of PNPM Cache Directory before install:"
+      #     ls -la $PNPM_CACHE_FOLDER
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
