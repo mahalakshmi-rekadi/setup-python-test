@@ -55,5 +55,7 @@ jobs:
             echo "Cache directory does not exist after caching."
             exit 1
           fi
+      - name: recreate cache directory before cleanup
+        run: mkdir -p $PNPM_CACHE_FOLDER
       - name: post job cleanup
         run: echo "Post job cleanup"
