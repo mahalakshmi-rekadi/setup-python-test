@@ -20,9 +20,7 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
 
-      - name: Create pnpm cache directory
-        run: mkdir -p $PNPM_CACHE_FOLDER
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
