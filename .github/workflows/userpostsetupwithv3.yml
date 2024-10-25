@@ -31,5 +31,14 @@ jobs:
       - name: Setup pnpm store config
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
 
-      - name: Install dependencies
+      - name: Debug Cache Directory
+        run: |
+          echo "Contents of PNPM Cache Directory:"
+          ls -la $PNPM_CACHE_FOLDER  # Verify the cache directory contents
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: List Node Modules
+        run: |
+          echo "Contents of Node Modules Directory:"
+          ls -la node_modules  # Check the node_modules structure
