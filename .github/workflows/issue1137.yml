@@ -4,7 +4,7 @@ on:
  workflow_dispatch:
 
 env:
-  PNPM_CACHE_FOLDER: .pnpm-store
+  PNPM_CACHE_FOLDER: ${{ github.workspace }}/.pnpm-store
 jobs:
   version_or_release:
     name: 'Version and open PR (or) release private packages'
@@ -20,6 +20,8 @@ jobs:
         run: mkdir -p $PNPM_CACHE_FOLDER
       - name: print pnpm store directory
         run: echo "PNPM_CACHE_FOLDER is set to $PNPM_CACHE_FOLDER"
+      - name: verify absolute path
+        run: echo "Absolute path of PNPM_CACHE_FOLDER:$PNPM_CACHE_FOLDER"
       - uses: pnpm/action-setup@v4
       - name: setup node.js
         uses: actions/setup-node@v3
