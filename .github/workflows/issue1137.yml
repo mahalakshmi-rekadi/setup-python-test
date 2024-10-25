@@ -30,19 +30,28 @@ jobs:
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
       - name: install dependencies
         run: pnpm install --frozen-lockfile
-      - name: post cache
+      - name: check cache directory existence before caching
+        run: |
+          if [ -d "$PNPM_CACHE_FOLDER" ]; then
+            echo "Cache directory exists before caching."
+          else
+            echo "Cache directory does not exist before caching."
+            exit 1
+          fi
+      - name: cache pnpm store
         uses: actions/cache@v3
         with:
           path: ${{ env.PNPM_CACHE_FOLDER }}
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-
-      - name: check cache directory existence
+      - name: check cache directory existence after caching
         run: |
           if [ -d "$PNPM_CACHE_FOLDER" ]; then
-            echo "Cache directory exists."
+            echo "Cache directory exists after caching."
           else
-            echo "Cache directory does not exist."
+            echo "Cache directory does not exist after caching."
+            exit 1
           fi
       - name: post job cleanup
         run: echo "Post job cleanup"
