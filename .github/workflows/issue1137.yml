@@ -3,7 +3,7 @@ on:
  workflow_dispatch:
 
 env:
-  PNPM_CACHE_FOLDER: .pnpm-store
+  PNPM_CACHE_FOLDER: .pmpm-store
 jobs:
   version_or_release:
     name: 'Version and open PR (or) release private packages'
@@ -16,7 +16,6 @@ jobs:
         with:
           fetch-depth: 0
       - uses: pnpm/action-setup@v4
-     
       - name: setup node.js
         uses: actions/setup-node@v3
         with:
@@ -24,6 +23,6 @@ jobs:
           cache: 'pnpm'
       - name: setup pnpm store config
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
-      - name: Install dependencies
+      - name: install dependencies
         run: pnpm install --frozen-lockfile
      
