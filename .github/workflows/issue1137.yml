@@ -37,5 +37,12 @@ jobs:
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-
+      - name: check cache directory existence
+        run: |
+          if [ -d "$PNPM_CACHE_FOLDER" ]; then
+            echo "Cache directory exists."
+          else
+            echo "Cache directory does not exist."
+          fi
       - name: post job cleanup
         run: echo "Post job cleanup"
