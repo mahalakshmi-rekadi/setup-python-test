@@ -1,10 +1,11 @@
 
-name: user post setup Tests with v3
+name: User Post Setup Tests with v3
 on:
- workflow_dispatch:
+  workflow_dispatch:
 
 env:
-  PNPM_CACHE_FOLDER: ${{ github.workspace }}/.pnpm-store
+  PNPM_CACHE_FOLDER: .pnpm-store  # Make sure this is correctly defined
+
 jobs:
   version_or_release:
     name: 'Version and open PR (or) release private packages'
@@ -12,50 +13,33 @@ jobs:
     runs-on: ubuntu-latest
     environment: 'Production - Private Packages'
     steps:
-      - name: checkout code repository
+      - name: Checkout code repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: create pnpm store directory
-        run: mkdir -p $PNPM_CACHE_FOLDER
-      - name: print pnpm store directory
-        run: echo "PNPM_CACHE_FOLDER is set to $PNPM_CACHE_FOLDER"
-      - name: verify absolute path
-        run: echo "Absolute path of PNPM_CACHE_FOLDER:$PNPM_CACHE_FOLDER"
+      
       - uses: pnpm/action-setup@v4
-      - name: setup node.js
+      
+      - name: Create PNPM Cache Directory
+        run: mkdir -p $PNPM_CACHE_FOLDER  # Ensure the cache directory exists
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'pnpm'
-      - name: setup pnpm store config
+          cache: 'pnpm'  # Use 'pnpm' to enable pnpm caching
+
+      - name: Setup PNPM Store Config
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
-      - name: install dependencies
+
+      - name: Debug Cache Directory
+        run: |
+          echo "Contents of PNPM Cache Directory:"
+          ls -la $PNPM_CACHE_FOLDER  # Verify the cache directory contents
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
-      - name: check cache directory existence before caching
+
+      - name: List Node Modules
         run: |
-          if [ -d "$PNPM_CACHE_FOLDER" ]; then
-            echo "Cache directory exists before caching."
-          else
-            echo "Cache directory does not exist before caching."
-            exit 1
-          fi
-      - name: cache pnpm store
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.PNPM_CACHE_FOLDER }}
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-      - name: check cache directory existence after caching
-        run: |
-          if [ -d "$PNPM_CACHE_FOLDER" ]; then
-            echo "Cache directory exists after caching."
-          else
-            echo "Cache directory does not exist after caching."
-            exit 1
-          fi
-      - name: recreate cache directory before cleanup
-        run: mkdir -p $PNPM_CACHE_FOLDER
-      - name: post job cleanup
-        run: echo "Post job cleanup"
+          echo "Contents of Node Modules Directory:"
+          ls -la node_modules  # Check the node_modules structure
