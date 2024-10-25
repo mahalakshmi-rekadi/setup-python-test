@@ -32,7 +32,13 @@ jobs:
 
       - name: Setup pnpm store config
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
-
+      - name: Cache pnpm store
+        uses: actions/cache@v2
+        with:
+          path: $PNPM_CACHE_FOLDER
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
       - name: Debug Cache Directory Before Install
         run: |
           echo "Contents of PNPM Cache Directory before install:"
