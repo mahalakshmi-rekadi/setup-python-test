@@ -20,10 +20,7 @@ jobs:
 
       - name: Create PNPM Cache Directory
         run: mkdir -p $PNPM_CACHE_FOLDER 
-      - name: Debug Cache Directory After Creation
-        run: |
-          echo "Contents of PNPM Cache Directory after creation:"
-          ls -la $PNPM_CACHE_FOLDER
+      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -32,13 +29,7 @@ jobs:
 
       - name: Setup pnpm store config
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
-      - name: Cache pnpm store
-        uses: actions/cache@v2
-        with:
-          path: .pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+     
       - name: Debug Cache Directory Before Install
         run: |
           echo "Contents of PNPM Cache Directory before install:"
