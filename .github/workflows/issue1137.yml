@@ -18,6 +18,8 @@ jobs:
           fetch-depth: 0
       - name: create pnpm store directory
         run: mkdir -p $PNPM_CACHE_FOLDER
+      - name: print pnpm store directory
+        run: echo "PNPM_CACHE_FOLDER is set to $PNPM_CACHE_FOLDER"
       - uses: pnpm/action-setup@v4
       - name: setup node.js
         uses: actions/setup-node@v3
@@ -31,7 +33,7 @@ jobs:
       - name: post cache
         uses: actions/cache@v3
         with:
-          path: $PNPM_CACHE_FOLDER
+          path: ${{ env.PNPM_CACHE_FOLDER }}
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm
+            ${{ runner.os }}-pnpm-
