@@ -27,8 +27,8 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      # - name: Setup pnpm store config
-      #   run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+      - name: Setup pnpm store config
+        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
      
       # - name: Debug Cache Directory Before Install
       #   run: |
