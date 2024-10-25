@@ -35,7 +35,7 @@ jobs:
       #     echo "Contents of PNPM Cache Directory before install:"
       #     ls -la $PNPM_CACHE_FOLDER
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install 
 
       - name: List Node Modules
         run: |
