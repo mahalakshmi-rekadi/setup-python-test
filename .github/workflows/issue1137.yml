@@ -37,3 +37,5 @@ jobs:
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-
+      - name: post job cleanup
+        run: echo "Post job cleanup"
