@@ -1,0 +1,11 @@
+name: Release (Private Packages)
+on:
+  workflow_dispatch:
+jobs:
+  "test":
+    runs-on: [ Windows]
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12.5
