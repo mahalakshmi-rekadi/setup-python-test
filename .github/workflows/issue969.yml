@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   "test":
-    runs-on: hosted
+    runs-on: windows-latest
     steps:
       - name: Set up Python
         uses: actions/setup-python@v4
