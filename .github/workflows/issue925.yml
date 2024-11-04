@@ -3,23 +3,10 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - name: Check for installer command
-        run: |
-         if [ -x /usr/sbin/installer ]; then
-           echo "installer command is available at /usr/sbin/installer"
-         else
-           echo "installer command is NOT available at /usr/sbin/installer"
-           exit 1
-         fi
-
-      - name: Install Python binaries from prebuilt package as non-privileged user
-        run: |
-          sudo -u $USER /usr/sbin/installer -pkg $PYTHON_PKG_NAME -target /
-        env:
-         PYTHON_PKG_NAME: "python-3.11.9-darwin-arm64.pkg"
+      
