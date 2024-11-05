@@ -6,6 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Print github.action_path
+        run: echo "github.action_path is ${{ github.action_path }}"
+
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
