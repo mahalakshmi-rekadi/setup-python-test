@@ -8,7 +8,8 @@ runs:
         action_path=$(python -c "import os; print(os.path.relpath('${{ github.action_path }}', '${{ github.workspace }}'))")
         echo "action_path=${action_path}" >> "$GITHUB_OUTPUT"
       shell: bash
-
+    - name: Checkout code
+      uses: actions/checkout@v4
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
