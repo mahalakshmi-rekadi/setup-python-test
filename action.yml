@@ -18,3 +18,4 @@ runs:
          cache-dependency-path: ${{ steps.action_relative_path.outputs.action_path }}/requirements.txt
      - name: Install dependencies
        run: pip install -r requirements.txt
+       shell: bash
