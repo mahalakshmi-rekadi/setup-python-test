@@ -1,3 +1,2 @@
-PyYAML>5,<7
-sr.comp>=1.4,<2
-sr.comp.scorer>=1.4,<2
+pysys==2.0 
+coverage==3.5
