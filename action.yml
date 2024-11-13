@@ -11,6 +11,6 @@ runs:
        with:
          python-version: '3.10'
          cache: 'pip'
-         cache-dependency-path: 
+         cache-dependencies: |
             pysys==2.0 
             coverage==3.5
