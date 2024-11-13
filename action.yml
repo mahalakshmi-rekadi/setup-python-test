@@ -12,5 +12,4 @@ runs:
          cache: 'pip'
          cache-dependency-path: ${{ github.action_path }}/requirements.txt
          currentWorkspace: ${{ github.workspace }}
-     - name: Run Python script
-       run: python my_script.py
+     
