@@ -12,5 +12,6 @@ runs:
          python-version: '3.10'
          cache: 'pip'
          cache-dependencies: |
-            pysys==2.0 
-            coverage==3.5
+            PyYAML>5,<7
+            sr.comp>=1.4,<2
+            sr.comp.scorer>=1.4,<2
