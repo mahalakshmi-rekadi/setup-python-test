@@ -1,2 +1,0 @@
-pysys==2.0 
-coverage==3.5
