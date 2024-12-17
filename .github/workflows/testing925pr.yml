@@ -1,0 +1,17 @@
+name: Reproduce Python Install Issue
+on: 
+   workflow_dispatch:
+jobs:
+  setup-python:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Clear existing Python versions
+      run: |
+          sudo rm -rf /Users/runner/hostedtoolcache/Python
+    - name: Setup Python 3.11
+      uses: mahalakshmi-rekadi/setup-python@prchanges
+      with:
+        python-version: '3.11' 
