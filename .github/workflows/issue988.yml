@@ -8,4 +8,5 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: "3.7"
+         python-version: "3.7 - 3.13"
+         oldest-first: true
