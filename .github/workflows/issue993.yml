@@ -1,8 +1,8 @@
-name: KSSO
+name: KSSO  
 on:
-   workflow_dispatch:
+  workflow_dispatch:
 jobs:
-  build:
+ build:
   name: Build
   runs-on: macos-latest
   strategy:
