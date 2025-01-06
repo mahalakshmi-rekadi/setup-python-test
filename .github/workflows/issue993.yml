@@ -3,53 +3,56 @@ on:
    workflow_dispatch:
 jobs:
   build:
-    name: Build
-    runs-on: macos-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - macos-latest
-          - ubuntu-latest
-          - windows-latest
-          - macos-13
-        python-version:
-          - 3.12
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Set up python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12'
-      - name: Cache poetry dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/pypoetry
-            ~/Library/Caches/pypoetry
-            C:\Users\runneradmin\AppData\Local\pypoetry\Cache
-          key: ${{ runner.os }}-${{ runner.arch }}-poetry-${{ hashFiles('**/poetry.lock')
-            }}
-          restore-keys: |
-            ${{ runner.os }}-${{ runner.arch }}-poetry-
-      - name: Install poetry
-        run: |
-          python -m pip install poetry
-     
-      - name: Build binary with pyinstaller
-        run: |
-          source $GITHUB_ENV
-          os_name=$(echo ${{ runner.os }}   | tr '[:upper:]' '[:lower:]')
-          os_arch=$(echo ${{ runner.arch }} | tr '[:upper:]' '[:lower:]')
-          if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
-            poetry run pyinstaller --add-data "ksso/success_message.html:ksso" --onefile ksso/main.py --name ksso-$os_name-$os_arch-$version
-          elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
-            poetry run pyinstaller   --target-architecture universal2 --add-data "ksso/success_message.html:ksso" --onefile ksso/main.py --name ksso-$os_name-$os_arch-$version
-          elif [[ "${{ matrix.os }}" == "macos-13" ]]; then
-            poetry run pyinstaller   --target-architecture x86_64 --add-data "ksso/success_message.html:ksso" --onefile ksso/main.py --name ksso-$os_name-$os_arch-$version
-          elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
-            poetry run pyinstaller --add-data "ksso/success_message.html;ksso" --onefile ksso/main.py --name ksso-$os_name-$os_arch-$version
-          fi
-        shell: bash
+  name: Build
+  runs-on: macos-latest
+  strategy:
+    fail-fast: false
+    matrix:
+      python-version:
+        - 3.12
+  timeout-minutes: 30
+  outputs:
+    version: ${{ steps.version.outputs.version }}
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Set up python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Cache poetry dependencies
+      id: cache
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/pypoetry
+          ~/Library/Caches/pypoetry
+          C:\Users\runneradmin\AppData\Local\pypoetry\Cache
+        key: ${{ runner.os }}-${{ runner.arch }}-poetry-${{ hashFiles('**/poetry.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-poetry-
+    - name: Install poetry
+      run: |
+        python -m pip install poetry
+    - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: poetry install --no-interaction --no-ansi
+    - name: Determine version
+      id: version
+      run: |
+        version=$(poetry version --short)
+        echo "version=$version" >> $GITHUB_ENV
+        echo "::set-output name=version::$version"
+      shell: bash
+    - name: Build binary with pyinstaller
+      run: |
+        source $GITHUB_ENV
+        os_name=$(echo ${{ runner.os }}   | tr '[:upper:]' '[:lower:]')
+        os_arch=$(echo ${{ runner.arch }} | tr '[:upper:]' '[:lower:]')
+        poetry run pyinstaller --target-architecture universal2 --add-data "ksso/success_message.html:ksso" --onefile ksso/main.py --name ksso-$os_name-$os_arch-$version
+      shell: bash
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ksso-macos-latest-${{ env.version }}
+        path: dist/ksso*
