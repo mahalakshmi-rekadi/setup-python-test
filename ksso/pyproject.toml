@@ -15,5 +15,5 @@ pyinstaller = "^5.11.0"
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.poetry.packages]
-packages = ["ksso"]
+[[tool.poetry.packages]]
+include = "ksso"
