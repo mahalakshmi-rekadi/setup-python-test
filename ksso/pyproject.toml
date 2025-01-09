@@ -4,7 +4,6 @@ name = "ksso"
 version = "0.1.0"
 description = "KSSO Project"
 authors = ["mahalakshmi-rekadi@github.com"]
-package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
