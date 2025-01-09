@@ -1,11 +1,11 @@
 
-[project]
+[tool.poetry]
 name = "ksso"
 version = "0.1.0"
 description = "KSSO Project"
 authors = ["Your Name <you@example.com>"]
 
-[project.dependencies]
+[tool.poetry.dependencies]
 python = "^3.12"
 pyinstaller = "^5.0.0"
 
