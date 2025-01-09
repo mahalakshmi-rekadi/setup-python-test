@@ -4,6 +4,7 @@ name = "ksso"
 version = "0.1.0"
 description = "KSSO Project"
 authors = ["mahalakshmi-rekadi@github.com"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -13,3 +14,6 @@ pyinstaller = "^5.11.0"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.packages]
+packages = [{include = "ksso"}]
