@@ -3,7 +3,7 @@
 name = "ksso"
 version = "0.1.0"
 description = "KSSO Project"
-authors = ["Your Name <you@example.com>"]
+authors = ["mahalakshmi-rekadi@github.com"]
 
 [tool.poetry.dependencies]
 python = "^3.12"
