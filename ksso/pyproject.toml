@@ -7,8 +7,7 @@ authors = ["mahalakshmi-rekadi@github.com"]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-pyinstaller = "^5.11.0"
-
+pyinstaller = { version = "^5.0.0", python = ">=3.12,<3.13" }
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
