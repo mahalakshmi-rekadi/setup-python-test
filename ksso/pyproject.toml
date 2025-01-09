@@ -1,9 +1,3 @@
-[project]
-name = "ksso"
-version = "0.1.0"
-description = "KSSO Project"
-authors = ["Your Name <you@example.com>"]
-
 
 [tool.poetry]
 name = "ksso"
